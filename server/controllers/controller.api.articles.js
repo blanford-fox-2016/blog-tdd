@@ -30,6 +30,7 @@ let allArticles = (req, res) => {
 let addArticle = (req, res) => {
   Article.create({
     content: req.body.content
+    userId: req.body.userId
   }, (err, new_article) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
     if(!new_article) res.status(404).json({'message': 'Failed to add article'})

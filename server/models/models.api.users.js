@@ -7,7 +7,11 @@ const Schema = mongoose.Schema
 
 let UsersSchema = new Schema({
   username  : String,
-  password  : String
+  password  : String,
+  article   : [{
+    type: Schema.ObjectId,
+    ref : 'Articles' 
+  }]
 }, {
   timestamps : true
 })

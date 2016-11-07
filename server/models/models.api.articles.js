@@ -6,10 +6,10 @@ const Schema = mongoose.Schema
 
 let ArticlesSchema = new Schema({
   content : String,
-  userId  : [{
+  userId  : {
     type: Schema.Types.ObjectId,
     ref: 'Users'
-  }]
+  } 
 }, {
   timestamps : true
 })

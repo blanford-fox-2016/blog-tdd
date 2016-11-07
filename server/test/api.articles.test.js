@@ -74,16 +74,16 @@ const url = 'http://localhost:3000'
   ** must be in format JSON
   ** respond content body should be same with the content value that deleted (DELETE)
 */
-describe('Deleted a specific article based on id', () => {
-  let id = '58203bcda3f8fa10a7b4b30a'
-  it('it should delete a specific article', (done) => {
-    chai.request(url)
-      .delete('/api/articles/' + id)
-      .end((err, res) => {
-        res.should.be.json
-        res.should.have.status(200)
-        res.body._id.should.equal(id)
-        done()
-      })
-  })
-})
+// describe('Deleted a specific article based on id', () => {
+//   let id = '58203bcda3f8fa10a7b4b30a'
+//   it('it should delete a specific article', (done) => {
+//     chai.request(url)
+//       .delete('/api/articles/' + id)
+//       .end((err, res) => {
+//         res.should.be.json
+//         res.should.have.status(200)
+//         res.body._id.should.equal(id)
+//         done()
+//       })
+//   })
+// })
