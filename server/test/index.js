@@ -40,18 +40,31 @@ describe("Test if create Blog works", function () {
             })
     })
 
-    // it.skip("Return true if create blog works", function (done) {
-    //     chai.request(app)
-    //         .post('/api/blog/create')
-    //         .field('_method', 'POST')
-    //         .field('title', 'title create')
-    //         .field('description', 'description create')
-    //         .end(function (err, res) {
-    //             console.log(res.body)
-    //             expect(res).to.have.status(200)
-    //             expect(res.body.title).to.be.equal('title create')
-    //             expect(res.body.description).to.be.equal('description create')
-    //             done()
-    //         })
-    // })
+    it.skip("Return true if create blog works", function (done) {
+        chai.request(app)
+            .post('/api/blog/create')
+            .send({
+                postId: '6',
+                title: 'title create',
+                description: 'description create'
+            })
+            .end(function (err, res) {
+                console.log(res.body)
+                // expect(res).to.have.status(200)
+                // expect(res.body.title).to.equal('title create')
+                // expect(res.body.description).to.equal('description create')
+                done()
+            })
+    })
+
+    it("Return true if delete blog works", function (done) {
+        chai.request(app)
+            .delete('/api/blog/delete/1')
+            .end(function (err, res) {
+                expect(res).to.have.status(200)
+                expect(res.body.title).to.equal('title a')
+                expect(res.body.description).to.equal('description a')
+                done()
+            })
+    })
 })
