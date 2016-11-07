@@ -9,6 +9,7 @@ const expect = chai.expect
 
 chai.use(chaiHttp)
 
+//BLOG
 describe("Test if create Blog works", function () {
 
     beforeEach(function (done) {
@@ -79,6 +80,26 @@ describe("Test if create Blog works", function () {
                 expect(res).to.have.status(200)
                 expect(res.body.title).to.equal('title update')
                 expect(res.body.description).to.equal('description update')
+                done()
+            })
+    })
+})
+
+//USER
+describe("Test if register user works", function () {
+    beforeEach(function (done) {
+        chai.request(app)
+            .get('/api/user/seed')
+            .end(function (err, res) {
+                // console.log("seeded")
+                done()
+            })
+    })
+
+    afterEach(function (done) {
+        chai.request(app)
+            .delete('/api/user/delete')
+            .end(function (err, res) {
                 done()
             })
     })
