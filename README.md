@@ -1,6 +1,6 @@
-# Blog-tdd
+# Blog Test Driven Development
 
-writing a blog apps and implementing test-driven-development. 
+writing a blog apps and implementing test-driven-development.
 
 ## Technology used
 1. Nodejs
@@ -9,6 +9,21 @@ writing a blog apps and implementing test-driven-development.
 4. mongoose
 5. passport
 6. mocha
+
+## API End Point
+Default development host and port : http://localhost:3000
+
+| Method   |      End Point |   Description      |
+|----------|:--------------:|-------------------:|
+| GET      |  api/blogs      | Get the blog       |
+| POST     |  api/blogs      | Create a blogpost  |
+| PUT      |  api/blogs/:id  | Update the blogpost|
+| DELETE   |  api/blogs/:id  | Update the blogpost|
+| GET      |  api/users      | GET the user       |
+| POST     |  api/users      | Create New user    |
+| PUT      |  api/users/:id  | Update User        |
+| DELETE   |  api/users/:id  | Delete the user    |
+
 
 ## Contributor
 Juang Wiantoro &copy; 2016
