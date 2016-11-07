@@ -1,6 +1,7 @@
 'user strict'
 
 const mongoose = require('mongose')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const Schema = mongoose.Schema
 
@@ -10,5 +11,7 @@ let UsersSchema = new Schema ({
 }, {
   timestamps : true
 })
+
+UsersSchema.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('Users'. UsersSchema)
