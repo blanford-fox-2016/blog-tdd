@@ -85,6 +85,16 @@ module.exports = {
             if (err) res.json(err)
             else res.json(data)
         })
+    },
+
+    loginUser: function (req, res) {
+        User.findOne({
+            username: req.body.username,
+            password: req.body.password
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     }
 
 }

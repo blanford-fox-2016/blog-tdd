@@ -169,4 +169,21 @@ describe("Test if register user works", function () {
                 done()
             })
     })
+
+    it("expect to return user can login", function (done) {
+        chai.request(app)
+            .post('/api/login')
+            .send({
+                username: 'username a',
+                password: 'password a',
+            })
+            .end(function (err, res) {
+                expect(res).to.have.status(200)
+                expect(res.body.name).to.equal('name a')
+                expect(res.body.username).to.equal('username a')
+                expect(res.body.password).to.equal('password a')
+                expect(res.body.email).to.equal('aaa@gmail.com')
+                done()
+            })
+    })
 })
