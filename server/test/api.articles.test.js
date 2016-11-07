@@ -10,10 +10,10 @@ const url = 'http://localhost:3000'
   * should return (200) status code
   ** must be in format JSON
 */
-describe('Get all blogs from database', (done) => {
-  it('it should return all blogs from database', () => {
+describe('Get all articles from database', (done) => {
+  it('it should return all articles from database', () => {
     chai.request(url)
-      .get('/api/blogs')
+      .get('/api/articles')
       .end((err, res) => {
         res.should.be.json
         res.should.have.status(200)
@@ -23,15 +23,15 @@ describe('Get all blogs from database', (done) => {
 })
 
 /*
-  * will test POST /api/blogs
+  * will test POST /api/articles
   * should return (200) status code
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (POST)
 */
-describe('Add a new blog into database', (done) => {
-  it('it should add new blog', (done) => {
+describe('Add a new article into database', (done) => {
+  it('it should add new article', (done) => {
     chai.request(url)
-      .post('/api/blogs')
+      .post('/api/articles')
       .send({
         "content" : "content from testing"
       })
@@ -45,16 +45,16 @@ describe('Add a new blog into database', (done) => {
 })
 
 /*
-  * will test PUT /api/blogs/:id
+  * will test PUT /api/articles/:id
   * should return (200) status code
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (PUT)
 */
-describe('Updated a specific blog based on id', (done) => {
+describe('Updated a specific article based on id', (done) => {
   let id = 1
-  it('it should update a specific blog', () => {
+  it('it should update a specific article', () => {
     chai.request(url)
-      .put('/api/blogs/' + id)
+      .put('/api/articles/' + id)
       .send({
         "content" : "edit content from testing"
       })
@@ -68,16 +68,16 @@ describe('Updated a specific blog based on id', (done) => {
 })
 
 /*
-  * will test DELETE /api/blogs
+  * will test DELETE /api/articles
   * should return (200) status code
   ** must be in format JSON
   ** respond content body should be same with the content value that deleted (DELETE)
 */
-describe('Deleted a specific blog based on id', (done) => {
+describe('Deleted a specific article based on id', (done) => {
   let id = 1
-  it('it should delete a specific blog', () => {
+  it('it should delete a specific article', () => {
     chai.request(url)
-      .delete('/api/blogs/' + id)
+      .delete('/api/articles/' + id)
       .end((err, res) => {
         res.should.be.json
         res.should.have.status(200)
