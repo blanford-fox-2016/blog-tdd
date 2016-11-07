@@ -9,18 +9,18 @@ const url = 'http://localhost:3000'
   * should return (200) status code
   ** must be in format JSON
 */
-// describe('Get all users from database', function(done) {
-//   it('it should return all users from database', function() {
-//     chai.request(url)
-//       .get('/api/users')
-//       .end(function(err, res){
-//         console.log(res);
-//         res.should.be.json
-//         res.should.have.status(200)
-//         done()
-//       })
-//   })
-// })
+describe('Get all users from database', function() {
+  it('it should return all users from database', function(done) {
+    chai.request(url)
+      .get('/api/users')
+      .end(function(err, res){
+        console.log(res.body);
+        res.should.be.json
+        res.should.have.status(200)
+        done()
+      })
+  })
+})
 
 /*
   * will test POST /api/users
@@ -28,24 +28,25 @@ const url = 'http://localhost:3000'
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (POST)
 */
-// describe('Add a new user into database', function(){
-//   it('it should add new user', function(){
-//     chai.request(url)
-//       .post('/api/users')
-//       .send({
-//         "username" : "admin",
-//         "password" : "admin"
-//         // add article put here
-//       })
-//       .end(function(err, res){
-//         res.should.be.json
-//         res.should.have.status(200)
-//         res.body.username.should.equal("admin")
-//         res.body.password.should.equal("admin")
-//         done()
-//       })
-//   })
-// })
+describe.skip('Add a new user into database', function(){
+  it('it should add new user', function(done){
+    chai.request(url)
+      .post('/api/users')
+      .send({
+        "username" : "tama", // username is unique
+        "password" : "tama"
+        // add article put here
+      })
+      .end(function(err, res){
+        console.log(res.body);
+        res.body.should.be.json
+        res.body.should.have.status(200)
+        res.body.username.should.equal("admin")
+        res.body.password.should.equal("admin")
+        done()
+      })
+  })
+})
 
 /*
   * will test PUT /api/users/:id
@@ -53,9 +54,9 @@ const url = 'http://localhost:3000'
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (PUT)
 */
-describe('Updated a specific user based on id', function(done){
-  let id = 1
-  it('it should update a specific user', function(){
+describe.skip('Updated a specific user based on id', function(){
+  let id = '582043369194e1133ee21560'
+  it('it should update a specific user', function(done){
     chai.request(url)
       .put('/api/users/' + id)
       .send({
@@ -78,8 +79,8 @@ describe('Updated a specific user based on id', function(done){
   ** must be in format JSON
   ** respond content body should be same with the content value that deleted (DELETE)
 */
-describe('Deleted a specific user based on id', function(done){
-  let id = '58203d1f76622e111e3a882a'
+describe.skip('Deleted a specific user based on id', function(done){
+  let id = '582043c58278ee1370295e50'
   it('it should delete a specific user', function(){
     chai.request(url)
       .delete('/api/users/' + id)

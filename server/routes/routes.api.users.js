@@ -10,9 +10,9 @@ router.get('/', controller.allUsers)
 router.post('/', controller.addUser);
 
 /* Process Edit a User. */
-// router.put('/:id', controller.editUser);
+router.put('/:id', controller.editUser);
 
 /* Process Delete a User. */
-// router.delete('/:id', controller.deleteUser);
+router.delete('/:id', controller.deleteUser);
 
 module.exports = router;
