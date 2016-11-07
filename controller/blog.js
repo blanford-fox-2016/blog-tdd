@@ -34,6 +34,7 @@ let showAll = (req,res) => {
 }
 
 let deleteBlog = (req,res) => {
+
   console.log(req.params);
   Blog.findByIdAndRemove(req.params.id,(err,data) => {
     if (err) {

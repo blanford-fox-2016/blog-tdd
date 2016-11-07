@@ -61,8 +61,32 @@ describe('endpoint', function() {
     })
   })
 
+  it('logIn',function(done) {
+    chai.request('http://localhost:3000')
+    .post('/api/user/login')
+    .send({
+      email:"ajilantang@yahoo.com",
+      password:"mardika"
+    })
+    .expect(res).to.have.status(200)
+  })
+
+  it('signUP',function(done) {
+    chai.request('http://localhost:3000')
+    .post('/api/user/signUp')
+    .send({
+      email:"ajilantang@yahoo.com",
+      password:"mardika"
+    })
+    .expect(res).to.have.status(200)
+  })
 
 
+  it('logOut',function(done) {
+    chai.request('http://localhost:3000')
+    .get('/api/user/logOut')
+    .expect(res).to.have.status(200)
+  })
 
 
 
