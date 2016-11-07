@@ -1,6 +1,7 @@
 'use strict'
 
 const User = require('../models/user.server.model');
+const bcrypt = require('bcrypt');
 
 module.exports = {
   create: (req, res) => {
@@ -26,6 +27,7 @@ module.exports = {
     var params = {
       username : req.params.username
     }
+
     var userData = {
       name : req.body.name,
       password : req.body.password
