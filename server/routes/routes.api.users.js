@@ -4,7 +4,7 @@ var router = express.Router();
 const controller = require('../controllers/controller.api.users')
 
 /* GET All Users. */
-// router.get('/', controller.allUsers)
+router.get('/', controller.allUsers)
 
 /* Process New User. */
 router.post('/', controller.addUser);

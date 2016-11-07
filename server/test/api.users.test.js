@@ -14,6 +14,7 @@ const url = 'http://localhost:3000'
 //     chai.request(url)
 //       .get('/api/users')
 //       .end((err, res) => {
+//         // console.log(res.body);
 //         res.should.be.json
 //         res.should.have.status(200)
 //         done()
