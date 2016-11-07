@@ -8,7 +8,7 @@ const chai = require('chai')
 chai.use(chaiHttp);
 
 // test get all data from database
-it('get all data success', function(done) {
+it('it will be pass if get all data', function(done) {
   chai.request('http://localhost:3000')
     .get('/api/blogs')
     .end(function(err, res) {
@@ -36,3 +36,14 @@ it('it will be pass if insert give a response message ( insert success )', funct
 }) ;
 
 // delete data from
+it('it will be pass if insert give a response message ( insert success )', function(done) {
+  chai.request('http://localhost:3000')
+  .delete('/api/blogs')
+  .send({_id: "58204abf80b3a30f22536522" })
+  .end(function(err, res) {
+
+    res.body.message.should.be.equal("delete success");
+
+    done()
+  });
+}) ;
