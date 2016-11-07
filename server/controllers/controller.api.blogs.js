@@ -48,14 +48,16 @@ module.exports = {
 
     addBlog: function (req, res) {
         const blog = {
-            _id: req.body.id,
+            postId: req.body.id,
             title: req.body.title,
             description: req.body.description
         }
 
         Blog.create(blog, function (err, data) {
             if (err) res.json(err)
-            else res.json(data)
+            else {
+                res.json(data)
+            }
         })
     },
 

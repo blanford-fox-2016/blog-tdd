@@ -15,7 +15,7 @@ describe("Test if create Blog works", function () {
         chai.request(app)
             .get('/api/blog/seed')
             .end(function (err, res) {
-                console.log("seeded")
+                // console.log("seeded")
                 done()
             })
     })
@@ -32,7 +32,7 @@ describe("Test if create Blog works", function () {
         chai.request(app)
             .get('/api/blog')
             .end(function (err, res) {
-                console.log(res.body)
+                // console.log(res.body)
                 expect(res).to.have.status(200)
                 expect(res.body[0].title).to.equal('title a')
                 expect(res.body[0].description).to.equal('description a')
@@ -40,7 +40,7 @@ describe("Test if create Blog works", function () {
             })
     })
 
-    it.skip("Return true if create blog works", function (done) {
+    it("Return true if create blog works", function (done) {
         chai.request(app)
             .post('/api/blog/create')
             .send({
@@ -49,10 +49,9 @@ describe("Test if create Blog works", function () {
                 description: 'description create'
             })
             .end(function (err, res) {
-                console.log(res.body)
-                // expect(res).to.have.status(200)
-                // expect(res.body.title).to.equal('title create')
-                // expect(res.body.description).to.equal('description create')
+                expect(res).to.have.status(200)
+                expect(res.body.title).to.equal('title create')
+                expect(res.body.description).to.equal('description create')
                 done()
             })
     })
