@@ -73,6 +73,22 @@ module.exports = {
             if (err) res.json(err)
             else res.json(data)
         })
+    },
+
+    updateBlog: function (req, res) {
+        Blog.findOneAndUpdate({
+            postId: req.params.postId
+        }, {
+            postId: '7',
+            title: 'title update',
+            description: 'description update'
+        }, {
+            new: true,
+            upsert: true
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     }
 
 }

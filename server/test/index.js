@@ -67,4 +67,20 @@ describe("Test if create Blog works", function () {
                 done()
             })
     })
+
+    it("Return true if update blog works", function (done) {
+        chai.request(app)
+            .put('/api/blog/update/1')
+            .send({
+                postId: '7',
+                title: 'title update',
+                description: 'description update'
+            })
+            .end(function (err, res) {
+                expect(res).to.have.status(200)
+                expect(res.body.title).to.equal('title update')
+                expect(res.body.description).to.equal('description update')
+                done()
+            })
+    })
 })
