@@ -67,5 +67,13 @@ module.exports = {
                 })
             }
         })
+    },
+    loginProcess: function(req, res, next) {
+
+        passport.authenticate('local', (err, user, info) => {
+            res.send({ id: user._id, username: user.username, name: user.name })
+        })(req, res, next)
+
     }
+
 }
