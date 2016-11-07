@@ -10,18 +10,18 @@ const url = 'http://localhost:3000'
   * should return (200) status code
   ** must be in format JSON
 */
-// describe('Get all articles from database', () => {
-//   it('it should return all articles from database', (done) => {
-//     chai.request(url)
-//       .get('/api/articles')
-//       .end((err, res) => {
-//         console.log(res.body);
-//         res.should.be.json
-//         res.should.have.status(200)
-//         done()
-//       })
-//   })
-// })
+describe('Get all articles from database', () => {
+  it('it should return all articles from database', (done) => {
+    chai.request(url)
+      .get('/api/articles')
+      .end((err, res) => {
+        console.log(res.body);
+        res.should.be.json
+        res.should.have.status(200)
+        done()
+      })
+  })
+})
 
 /*
   * will test POST /api/articles
