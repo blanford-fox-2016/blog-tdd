@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Blog = require('../models/blog')
 const passport = require('passport')
 
 module.exports = {
@@ -18,7 +19,6 @@ module.exports = {
                 })
             }
         })
-    },
-
+    }
 
 }
