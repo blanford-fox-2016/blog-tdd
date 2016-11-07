@@ -5,15 +5,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var session = require('express-session')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var app = express();
+
+// use sessions for tracking logins
+app.use(session({
+  secret : 'anything',
+  resave : true,
+  saveUninitialized : false
+}));
+
+// make user ID available in templates
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.userId;
+  next();
+})
+
 // requiring mongoose
 mongoose.connect('mongodb://localhost:27017/blog-tdd');
-mongoose.Promise = global.promise;
-
-var app = express();
+mongoose.Promise = global.Promise;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

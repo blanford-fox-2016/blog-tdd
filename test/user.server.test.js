@@ -2,6 +2,7 @@
 
 const mocha = require('mocha')
 const chai = require('chai')
+const expect = chai.expect
 const chaiHttp = require('chai-http')
 chai.use(chaiHttp)
 
@@ -11,11 +12,11 @@ const url = 'http://localhost:3000'
 describe('Nodejs Checking', function() {
     it('Check the server', function(done) {
       this.timeout(3000)
-      chai.request('http://localhost:3000')
+      chai.request('http://localhost:3000/user')
         .get('/')
-        .then(function(res) {
-          console.log('res');
+        .end(function(err, res) {
           expect(res).to.have.status(200)
+          expect(res).to.be.json
           done()
         })
     })
