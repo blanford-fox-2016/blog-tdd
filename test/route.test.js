@@ -97,7 +97,7 @@ describe.skip('Route post Register new User', function() {
 describe('Route Login Process', function() {
     let newUsername = `aaaa`
     let newPassword = `aaaa`
-    it('expect something', function(done) {
+    it('expect username from login = username from database', function(done) {
         chai.request(urlApi)
             .post('/login')
             .send({
