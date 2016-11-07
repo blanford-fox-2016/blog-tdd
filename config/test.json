@@ -1,0 +1,3 @@
+{
+	"DBHost" : "mongodb://tevin:tevin@ds035693.mlab.com:35693/blog-tdd-2"
+}
