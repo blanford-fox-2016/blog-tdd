@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/user', userCtrl.create)
 router.get('/user', userCtrl.list)
+router.put('/user/:username', userCtrl.update)
 
 
 module.exports = router;

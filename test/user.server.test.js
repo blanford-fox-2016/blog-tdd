@@ -9,29 +9,62 @@ chai.use(chaiHttp)
 const url = 'http://localhost:3000'
 
 
-describe('Nodejs Checking', function() {
-    it('Check the server', function(done) {
-      this.timeout(3000)
-      chai.request('http://localhost:3000/user')
-        .get('/')
-        .end(function(err, res) {
-          expect(res).to.have.status(200)
-          expect(res).to.be.json
-          done()
-        })
-    })
-    // it('Can post new user', () => {
-    //   chai.request(url)
-    //     .post('/api/users')
-    //     .send({
-    //       username : 'broerjuang',
-    //       name : 'juang wiantoro',
-    //       password : 'kambing'
-    //     })
-    //     .then(res => {
-    //       expect(res).to.have.status(200)
-    //       expect(res.body.username).to.equal('broerjuang')
-    //       console.log(res.body.);
-    //     })
-    // });
-  });
+// Testig the server in root directory
+describe('Server Checking', function() {
+  it('Check the server', function(done) {
+    //this.timeout(3000)
+    chai.request(url)
+      .get('/')
+      .end(function(err, res) {
+        expect(res).to.have.status(200)
+        done()
+      })
+  })
+});
+
+// Try to register user and check it
+describe('Register User', function() {
+  it('Register User Given Unexisted Username', function (done) {
+    chai.request(url)
+      .post('/user')
+      .send({
+        username : 'halala',
+        name : 'dl',
+        password: 'kambing'
+      })
+      .end(function(err, res){
+        console.log('test');
+        done()
+      })
+  })
+
+});
+
+
+// Get all user from database
+
+describe('Get all user from database', function() {
+  it('Show All Users', function (done) {
+    chai.request(url)
+      .get('/user')
+      .end(function(err, res){
+        expect(res).to.be.json
+        expect(res).to.have.status(200)
+        done()
+      })
+  })
+});
+
+//Update the user
+
+describe('Update the user from database', function() {
+  it('Show All Users', function (done) {
+    chai.request(url)
+      .put('/user')
+      .end(function(err, res){
+        expect(res).to.be.json
+        expect(res).to.have.status(200)
+        done()
+      })
+  })
+});

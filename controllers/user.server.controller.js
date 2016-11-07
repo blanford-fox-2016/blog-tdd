@@ -34,8 +34,9 @@ module.exports = {
       new : true,
       upsert : true
     }
+    console.log(params, userData, option);
     // find one and update the data
-    User.findOneAndUpdate(params,userdata,option)
+    User.findOneAndUpdate(params , userData , option)
       .then(user => res.json(user))
       .catch(err => res.json(err))
   },
