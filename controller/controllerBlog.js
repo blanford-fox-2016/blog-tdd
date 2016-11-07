@@ -26,11 +26,11 @@ module.exports = {
 
   // delete data blog
   deleteBlog : function(req, res, next){
-    User.findOneAndRemove({ _id: "58204abf80b3a30f22536522" }, function(err) {
+    User.findOneAndRemove({ '_id' : req.body._id }, function(err) {
       if (err) throw err;
 
       // we have deleted the user
-      res.json({message : 'delete success'});
+      res.json({ message : 'delete success' });
 
     });
   }

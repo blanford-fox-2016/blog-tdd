@@ -39,7 +39,7 @@ it('it will be pass if insert give a response message ( insert success )', funct
 it('it will be pass if insert give a response message ( insert success )', function(done) {
   chai.request('http://localhost:3000')
   .delete('/api/blogs')
-  .send({_id: "58204abf80b3a30f22536522" })
+  .send({ '_id' : "58204abf80b3a30f22536522" })
   .end(function(err, res) {
 
     res.body.message.should.be.equal("delete success");
