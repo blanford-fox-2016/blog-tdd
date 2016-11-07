@@ -10,6 +10,8 @@ let ArticlesSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Users'
   }]
+}, {
+  timestamps : true
 })
 
 module.exports = mongoose.model('Articles', ArticlesSchema)
