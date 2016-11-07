@@ -13,25 +13,36 @@ module.exports = {
   insertBlog : function(req, res, next){
 
     var newBlog = blog({
-      title : req.body.title,
+      id      : req.body.id,
+      title   : req.body.title,
       content : req.body.content
     });
 
     newBlog.save(function(err, data) {
       if (err) throw err;
-      res.json({message : "insert success"})
+      res.json(data)
     });
 
   },
-
   // delete data blog
   deleteBlog : function(req, res, next){
-    User.findOneAndRemove({ '_id' : req.body._id }, function(err) {
+    blog.findOneAndRemove({ id : req.body.id }, function(err, data) {
       if (err) throw err;
 
-      // we have deleted the user
-      res.json({ message : 'delete success' });
+      console.log(data);
+      res.json(data);
 
+    });
+  },
+  // update data blog
+  updateBlog : function(req, res, next){
+    console.log(req.body.id);
+    console.log(req.body.title);
+    console.log(req.body.content);
+    blog.findOneAndUpdate({ id: req.body.id }, { title: req.body.title, content : req.body.content }, { new : true }, function(err, data) {
+      if (err) throw err;
+      console.log(data);
+      res.json(data)
     });
   }
 

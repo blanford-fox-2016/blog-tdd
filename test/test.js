@@ -7,12 +7,13 @@ const chai = require('chai')
 
 chai.use(chaiHttp);
 
-// test get all data from database
+// test get all data blog from database
 it('it will be pass if get all data', function(done) {
   chai.request('http://localhost:3000')
     .get('/api/blogs')
     .end(function(err, res) {
 
+    // console.log(res.body);
     res.should.be.status(200);
 
     // expect(err).to.be.null;
@@ -22,27 +23,40 @@ it('it will be pass if get all data', function(done) {
   });
 }) ;
 
-// test insert data into database
+// test insert data blog into database
 it('it will be pass if insert give a response message ( insert success )', function(done) {
   chai.request('http://localhost:3000')
   .post('/api/blogs')
-  .send({title: 'hallo', content:'hallo'})
+  .send({id: '2' ,title: 'hallo', content:'hallo'})
   .end(function(err, res) {
 
-    res.body.message.should.be.equal("insert success");
+    console.log(res.body);
+
+    done()
+  });
+});
+
+// update data blog from databse
+it('it will be pass if insert give a response message ( delete success )', function(done) {
+  chai.request('http://localhost:3000')
+  .put('/api/blogs')
+  .send({ id : '2', title: "start world", content: "this is star world"})
+  .end(function(err, res) {
+
+    console.log(res.body);
 
     done()
   });
 }) ;
 
-// delete data from
-it('it will be pass if insert give a response message ( insert success )', function(done) {
+// delete data blog from database
+it('it will be pass if insert give a response message ( delete success )', function(done) {
   chai.request('http://localhost:3000')
   .delete('/api/blogs')
-  .send({ '_id' : "58204abf80b3a30f22536522" })
+  .send({ id : '2' })
   .end(function(err, res) {
 
-    res.body.message.should.be.equal("delete success");
+    console.log(res.body);
 
     done()
   });

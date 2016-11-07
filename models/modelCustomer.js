@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 var customerSchema = mongoose.Schema({
+    id : String,
     username : String
 },{
   timestamps : true
