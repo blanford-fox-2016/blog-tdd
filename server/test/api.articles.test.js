@@ -5,12 +5,14 @@ chai.use(chaiHTTP)
 const should = chai.should()
 
 const url = 'http://localhost:3000'
+
+
 /*
   * will test GET /api/users
   * should return (200) status code
   ** must be in format JSON
 */
-describe.skip('Get all articles from database', function(){
+describe('Get all articles from database', function(){
   it('it should return all articles from database', function(done){
     chai.request(url)
       .get('/api/articles')
@@ -29,11 +31,12 @@ describe.skip('Get all articles from database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (POST)
 */
-describe.skip('Add a new article into database', function(){
+describe('Add a new article into database', function(){
   it('it should add new article', function(done){
     chai.request(url)
       .post('/api/articles')
       .send({
+        "articleId" : 1,
         "content" : "new content from testing"
       })
       .end(function(err, res){
@@ -51,11 +54,10 @@ describe.skip('Add a new article into database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (PUT)
 */
-describe.skip('Updated a specific article based on id', function(){
-  let id = '58204b0d32682815ae86c615'
+describe('Updated a specific article based on id', function(){
   it('it should update a specific article', function(done){
     chai.request(url)
-      .put('/api/articles/' + id)
+      .put('/api/articles/' + 1)
       .send({
         "content" : "edit content from testing"
       })
@@ -75,14 +77,13 @@ describe.skip('Updated a specific article based on id', function(){
   ** respond content body should be same with the content value that deleted (DELETE)
 */
 describe('Deleted a specific article based on id', function(){
-  let id = '58204b166c9c7a15b549e685'
   it('it should delete a specific article', function(done){
     chai.request(url)
-      .delete('/api/articles/' + id)
+      .delete('/api/articles/' + 1)
       .end(function(err, res){
         res.should.be.json
         res.should.have.status(200)
-        res.body._id.should.equal(id)
+        res.body.articleId.should.equal(1)
         done()
       })
   })

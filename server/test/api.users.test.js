@@ -53,8 +53,8 @@ describe.skip('Add a new user into database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (PUT)
 */
-describe.skip('Updated a specific user based on id', function(){
-  let id = '58204ac9f44348157bb80501'
+describe('Updated a specific user based on id', function(){
+  let id = '58204b84c6d51815f85f20d8'
   it('it should update a specific user', function(done){
     chai.request(url)
       .put('/api/users/' + id)

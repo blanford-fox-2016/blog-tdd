@@ -5,11 +5,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let ArticlesSchema = new Schema({
+  articleId : Number,
   content : String,
   userId  : {
     type: Schema.Types.ObjectId,
     ref: 'Users'
-  } 
+  }
 }, {
   timestamps : true
 })

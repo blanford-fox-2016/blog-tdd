@@ -30,6 +30,7 @@ let allArticles = (req, res) => {
 let addArticle = (req, res) => {
   Article.create({
     content: req.body.content,
+    articleId: req.body.articleId,
     userId: req.body.userId
   }, (err, new_article) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
@@ -49,7 +50,7 @@ let addArticle = (req, res) => {
 */
 let editArticle = (req, res) => {
   Article.findOneAndUpdate({
-    _id : req.params.id
+    articleId : req.params.id
   }, req.body, {
     new : true
   }, (err, edited_article) => {
@@ -70,7 +71,7 @@ let editArticle = (req, res) => {
 */
 let deleteArticle = (req, res) => {
   Article.findOneAndRemove({
-    _id : req.params.id
+    articleId : req.params.id
   }, (err, deleted_article) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
     if(!deleted_article) res.status(404).json({'message': 'Failed to delete article'})
