@@ -18,7 +18,7 @@ describe('Blogs', () => {
     })
 
     describe('/GET blog', () => {
-        it('it should GET all the blogs', (done) => {
+        it('it should GET all blogs', (done) => {
             chai.request(server)
                 .get('/blog')
                 .end((err, res) => {
@@ -34,7 +34,7 @@ describe('Blogs', () => {
         it('it should not POST a blog without postedBy field', (done) => {
             let blog = {
                 title: "Hellow",
-                content: "Hellow how are ya?"
+                content: "Hellow how are yu?"
             }
             chai.request(server)
                 .post('/blog')
@@ -51,9 +51,9 @@ describe('Blogs', () => {
 
         it('it should POST a blog ', (done) => {
             let blog = {
-                title: "Sahbawow",
-                content: "Wow",
-                postedBy: "Sahbana"
+                title: "test",
+                content: "wow",
+                postedBy: "sahbana"
             }
             chai.request(server)
                 .post('/blog')
@@ -71,8 +71,8 @@ describe('Blogs', () => {
     })
 
     describe('/GET/:id blog', () => {
-        it('it should GET a blog by the given id', (done) => {
-            let blog = new Blog({ title: "Ini test title", content: "Ini test content", postedBy: "Gue" })
+        it('it should GET a blog given the id', (done) => {
+            let blog = new Blog({ title: "Ini test title", content: "Ini test content", postedBy: "ari" })
             blog.save((err, blog) => {
                 chai.request(server)
                     .get('/blog/' + blog.id)
@@ -93,16 +93,16 @@ describe('Blogs', () => {
 
     describe('/PUT/:id blog', () => {
         it('it should UPDATE a blog given the id', (done) => {
-            let blog = new Blog({ title: "Ini test title", content: "Ini test content", postedBy: "Ivan" })
+            let blog = new Blog({ title: "eneh test title", content: "eneh test content", postedBy: "septhianto" })
             blog.save((err, blog) => {
                 chai.request(server)
                     .put('/blog/' + blog.id)
-                    .send({ title: "Ini test title", content: "Ini test content", postedBy: "Ivana" })
+                    .send({ title: "gantee title", content: "gantee content", postedBy: "andrew" })
                     .end((err, res) => {
                         res.should.have.status(200)
                         res.body.should.be.a('object')
                         res.body.should.have.property('message').eql('Blog updated!')
-                        res.body.blog.should.have.property('postedBy').eql("Ivana")
+                        res.body.blog.should.have.property('postedBy').eql("andrew")
                         done()
                     })
             })
@@ -111,7 +111,7 @@ describe('Blogs', () => {
 
     describe('/DELETE/:id blog', () => {
         it('it should DELETE a blog given the id', (done) => {
-            let blog = new Blog({ title: "Ini test title", content: "Ini test content", postedBy: "Ivan" })
+            let blog = new Blog({ title: "eneh title", content: "eneh content", postedBy: "lilianti" })
             blog.save((err, blog) => {
                 chai.request(server)
                     .delete('/blog/' + blog.id)
