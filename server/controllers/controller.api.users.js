@@ -28,6 +28,13 @@ module.exports = {
         })
     },
 
+    getUser: function (req, res) {
+        User.find(function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
+    },
+
     localRegister: function (req, res) {
         User.register(new User ({
             name: req.body.name,

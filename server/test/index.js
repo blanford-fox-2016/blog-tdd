@@ -91,7 +91,7 @@ describe("Test if register user works", function () {
         chai.request(app)
             .get('/api/user/seed')
             .end(function (err, res) {
-                // console.log("seeded")
+                console.log("seeded")
                 done()
             })
     })
@@ -100,6 +100,20 @@ describe("Test if register user works", function () {
         chai.request(app)
             .delete('/api/user/delete')
             .end(function (err, res) {
+                done()
+            })
+    })
+
+    it("expect to return list of all users", function (done) {
+        chai.request(app)
+            .get('/api/user')
+            .end(function (err, res) {
+                console.log(res.body[0])
+                expect(res).to.have.status(200)
+                expect(res.body[0].name).to.equal('name a')
+                expect(res.body[0].username).to.equal('username a')
+                expect(res.body[0].password).to.equal('password a')
+                expect(res.body[0].email).to.equal('aaa@gmail.com')
                 done()
             })
     })
