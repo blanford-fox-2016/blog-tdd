@@ -28,7 +28,7 @@ it("Blog succesfully created", function(done) {
 })
 it("Blog succesfully deleted", function(done) {
     chai.request('http://localhost:3000')
-        .post('/blogs/delete')
+        .delete('/blogs/delete')
         .end(function(err, res) {
             res.body.message.should.be.equal("delete success")
             done()
