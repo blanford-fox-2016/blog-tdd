@@ -53,7 +53,7 @@ describe('Route put article', function() {
 })
 
 describe('Route delete article', function() {
-    it('expect to return json of ok:1 and status 200', function(done) {
+    it('expect to return json of n:1 and status 200', function(done) {
         chai.request('http://localhost:3000/api')
             .delete('/article/58202aa335eda6203ce75296')
             .end(function(err, res) {
