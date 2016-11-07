@@ -19,15 +19,47 @@ describe('Route get article', function() {
 })
 
 describe('Route post article', function() {
-    it('should return json and status 200', function(done) {
+    it('expect to return json of new user and status 200', function(done) {
         chai.request('http://localhost:3000/api')
             .post('/article')
-            .field('name', 'tevin')
-            .field('article', 'tevin article')
+            .send({
+                name: 'tevin',
+                article: 'tevin article'
+            })
             .end(function(req, res) {
                 expect(res).to.have.status(200);
-                expect(req).to.be.json;
+                expect(res).to.be.json;
                 expect(res.body.article).to.be.equal("tevin article")
+                done()
+            })
+    })
+})
+
+describe('Route put article', function() {
+    it('expect to return json of ok:1 and status 200', function(done) {
+        chai.request('http://localhost:3000/api')
+            .put('/article/58202aa335eda6203ce75296')
+            .send({
+                name: 'yoni',
+                article: 'yoni article'
+            })
+            .end(function(err, res) {
+                expect(res).to.have.status(200);
+                expect(res).to.be.json;
+                expect(res.body.ok).to.be.equal(1)
+                done()
+            })
+    })
+})
+
+describe('Route delete article', function() {
+    it('expect to return json of ok:1 and status 200', function(done) {
+        chai.request('http://localhost:3000/api')
+            .delete('/article/58202aa335eda6203ce75296')
+            .end(function(err, res) {
+                expect(res).to.have.status(200);
+                expect(res).to.be.json;
+                expect(res.body.n).to.be.equal(1)
                 done()
             })
     })
