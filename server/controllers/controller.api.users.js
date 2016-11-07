@@ -31,6 +31,7 @@ let addUser = (req, res) => {
   console.log(`ini masuk`);
   console.log(req.body);
   User.register({
+    userId   : req.body.userId,
     username : req.body.username
     // arcticle id add here
   }, req.body.password, (err, new_user) => {
@@ -59,7 +60,7 @@ let addUser = (req, res) => {
 */
 let editUser = (req, res) => {
   User.findOneAndUpdate({
-    _id : req.params.id
+    userId : req.params.id
   }, req.body, {
     new: true
   }, (err, updated_user) => {
@@ -79,12 +80,13 @@ let editUser = (req, res) => {
   * @apiSuccess delete a user
 */
 let deleteUser = (req, res) => {
+  console.log(`params: ${req.params.id}`);
   User.findOneAndRemove({
-    _id : req.params.id
+    userId : req.params.id
   }, (err, deleted_user) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
     if(!deleted_user) res.status(404).json({'message': 'Failed to delete user'})
-
+    console.log(deleted_user);
     res.status(200).json(deleted_user)
   })
 }

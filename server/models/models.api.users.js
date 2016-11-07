@@ -6,11 +6,12 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
 
 let UsersSchema = new Schema({
+  userId    : Number,
   username  : String,
   password  : String,
   article   : [{
     type: Schema.ObjectId,
-    ref : 'Articles' 
+    ref : 'Articles'
   }]
 }, {
   timestamps : true

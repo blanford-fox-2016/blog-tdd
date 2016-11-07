@@ -9,7 +9,7 @@ const url = 'http://localhost:3000'
   * should return (200) status code
   ** must be in format JSON
 */
-describe.skip('Get all users from database', function() {
+describe('Get all users from database', function() {
   it('it should return all users from database', function(done) {
     chai.request(url)
       .get('/api/users')
@@ -28,11 +28,12 @@ describe.skip('Get all users from database', function() {
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (POST)
 */
-describe.skip('Add a new user into database', function(){
+describe('Add a new user into database', function(){
   it('it should add new user', function(done){
     chai.request(url)
       .post('/api/users')
       .send({
+        "userId"   : 1,
         "username" : "admin", // username is unique
         "password" : "admin"
         // add article put here
@@ -54,10 +55,9 @@ describe.skip('Add a new user into database', function(){
   ** respond content body should be same with the content value that sent (PUT)
 */
 describe('Updated a specific user based on id', function(){
-  let id = '58204b84c6d51815f85f20d8'
   it('it should update a specific user', function(done){
     chai.request(url)
-      .put('/api/users/' + id)
+      .put('/api/users/' + 1)
       .send({
         "username" : "admin123"
       })
@@ -77,15 +77,14 @@ describe('Updated a specific user based on id', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that deleted (DELETE)
 */
-describe.skip('Deleted a specific user based on id', function(done){
-  let id = '58204ac9f44348157bb80501'
-  it('it should delete a specific user', function(){
+describe('Deleted a specific user based on id', function(){
+  it('it should delete a specific user', function(done){
     chai.request(url)
-      .delete('/api/users/' + id)
+      .delete('/api/users/' + 1)
       .end(function(err, res){
         res.should.be.json
         res.should.have.status(200)
-        res.body._id.should.equal(id)
+        res.body.userId.should.equal(1)
         done()
       })
   })
