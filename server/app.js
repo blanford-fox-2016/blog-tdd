@@ -43,6 +43,8 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 passport.use(new LocalStrategy(User.authenticate()))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
