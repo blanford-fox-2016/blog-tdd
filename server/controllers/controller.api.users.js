@@ -67,6 +67,24 @@ module.exports = {
             if (err) res.json(err)
             else res.json("All users deleted")
         })
+    },
+
+    updateUser: function (req, res) {
+        User.findOneAndUpdate({
+            userId: req.params.userId
+        }, {
+            userId: '3',
+            name: 'name c',
+            username: 'username c',
+            password: 'password c',
+            email: 'ccc@gmail.com'
+        }, {
+            new: true,
+            upsert: true
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     }
 
 }

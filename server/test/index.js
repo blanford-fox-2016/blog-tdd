@@ -118,6 +118,25 @@ describe("Test if register user works", function () {
             })
     })
 
+    it("Return true if create user works", function (done) {
+        chai.request(app)
+            .post('/api/register')
+            .send({
+                userId: '3',
+                name: 'name c',
+                username: 'username c',
+                password: 'password c',
+                email: 'ccc@gmail.com'
+            })
+            .end(function (err, res) {
+                expect(res).to.have.status(200)
+                expect(res.body.name).to.equal('name c')
+                expect(res.body.username).to.equal('username c')
+                expect(res.body.email).to.equal('ccc@gmail.com')
+                done()
+            })
+    })
+
     it("Return true if delete user works", function (done) {
         chai.request(app)
             .delete('/api/user/delete/1')
@@ -131,5 +150,23 @@ describe("Test if register user works", function () {
             })
     })
 
-
+    it("Return true if update user works", function (done) {
+        chai.request(app)
+            .put('/api/user/update/1')
+            .send({
+                userId: '3',
+                name: 'name c',
+                username: 'username c',
+                password: 'password c',
+                email: 'ccc@gmail.com'
+            })
+            .end(function (err, res) {
+                expect(res).to.have.status(200)
+                expect(res.body.name).to.equal('name c')
+                expect(res.body.username).to.equal('username c')
+                expect(res.body.password).to.equal('password c')
+                expect(res.body.email).to.equal('ccc@gmail.com')
+                done()
+            })
+    })
 })
