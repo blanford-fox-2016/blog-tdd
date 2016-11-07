@@ -13,7 +13,8 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE)
 
 const passport = require('passport')
-const localStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy
+const User = require('./models/user')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -41,7 +42,7 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-passport.use(new LocalStrategy(Profile.authenticate()))
+passport.use(new LocalStrategy(User.authenticate()))
 
 app.use('/', routes);
 app.use('/users', users);
