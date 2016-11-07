@@ -53,6 +53,15 @@ module.exports = {
         })
     },
 
+    deleteUserByPostId: function (req, res) {
+        User.findOneAndRemove({
+            userId: req.params.userId
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
+    },
+
     deleteAllUser: function (req, res) {
         User.remove({}, function (err, data) {
             if (err) res.json(err)

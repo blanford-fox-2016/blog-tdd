@@ -6,5 +6,6 @@ router.get('/user/seed', userController.seedUser)
 router.get('/user', userController.getUser)
 router.post('/register', userController.localRegister)
 router.delete('/user/delete', userController.deleteAllUser)
+router.delete('/user/delete/:userId', userController.deleteUserByPostId)
 
 module.exports = router;

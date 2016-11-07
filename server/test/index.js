@@ -117,4 +117,19 @@ describe("Test if register user works", function () {
                 done()
             })
     })
+
+    it("Return true if delete user works", function (done) {
+        chai.request(app)
+            .delete('/api/user/delete/1')
+            .end(function (err, res) {
+                expect(res).to.have.status(200)
+                expect(res.body.name).to.equal('name a')
+                expect(res.body.username).to.equal('username a')
+                expect(res.body.password).to.equal('password a')
+                expect(res.body.email).to.equal('aaa@gmail.com')
+                done()
+            })
+    })
+
+
 })
