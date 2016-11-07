@@ -7,6 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const cors = require('cors')
+const session = require('express-session')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE)
@@ -27,6 +28,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 app.use(cookieParser());
+
+app.use(session({
+  secret: SESSION_SECRET,
+  cookie: {
+    maxAge: 6000000
+  }
+}))
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
