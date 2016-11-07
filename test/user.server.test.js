@@ -10,7 +10,7 @@ const url = 'http://localhost:3000'
 
 
 // Testig the server in root directory
-describe('Server Checking', function() {
+describe.skip('Server Checking', function() {
   it('Check the server', function(done) {
     //this.timeout(3000)
     chai.request(url)
@@ -28,12 +28,14 @@ describe('Register User', function() {
     chai.request(url)
       .post('/user')
       .send({
-        username : 'halala',
+        username : 'aduhai',
         name : 'dl',
         password: 'kambing'
       })
       .end(function(err, res){
-        console.log('test');
+        console.log(res.body);
+        expect(res).to.have.status(200)
+        //expect(res).to.have.property('password')
         done()
       })
   })
@@ -43,7 +45,7 @@ describe('Register User', function() {
 
 // Get all user from database
 
-describe('Get all user from database', function() {
+describe.skip('Get all user from database', function() {
   it('Show All Users', function (done) {
     chai.request(url)
       .get('/user')
@@ -57,7 +59,7 @@ describe('Get all user from database', function() {
 
 //Update the user
 
-describe('Update the user from database', function() {
+describe.skip('Update the user from database', function() {
   it('Show All Users', function (done) {
     chai.request(url)
       .put('/user')
