@@ -16,8 +16,8 @@ describe('Get all articles from database', function(){
       .get('/api/articles')
       .end(function(err, res){
         console.log(res.body);
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         done()
       })
   })
@@ -37,8 +37,8 @@ describe.skip('Add a new article into database', function(){
         "content" : "new content from testing"
       })
       .end(function(err, res){
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         res.body.content.should.equal("new content from testing")
         done()
       })
@@ -60,8 +60,8 @@ describe.skip('Updated a specific article based on id', function(){
         "content" : "edit content from testing"
       })
       .end(function(err, res){
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         res.body.content.should.equal("edit content from testing")
         done()
       })
@@ -80,8 +80,8 @@ describe.skip('Deleted a specific article based on id', function(){
     chai.request(url)
       .delete('/api/articles/' + id)
       .end(function(err, res){
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         res.body._id.should.equal(id)
         done()
       })

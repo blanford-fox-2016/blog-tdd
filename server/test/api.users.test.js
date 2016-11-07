@@ -15,8 +15,8 @@ describe('Get all users from database', function() {
       .get('/api/users')
       .end(function(err, res){
         console.log(res.body);
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         done()
       })
   })
@@ -64,8 +64,8 @@ describe.skip('Updated a specific user based on id', function(){
         "password" : "admin123"
       })
       .end(function(err, res){
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         res.body.username.should.equal("admin123")
         res.body.password.should.equal("admin123")
         done()
@@ -85,8 +85,8 @@ describe.skip('Deleted a specific user based on id', function(done){
     chai.request(url)
       .delete('/api/users/' + id)
       .end(function(err, res){
-        res.should.be.json
-        res.should.have.status(200)
+        res.body.should.be.json
+        res.body.should.have.status(200)
         res.body._id.should.equal(id)
         done()
       })
