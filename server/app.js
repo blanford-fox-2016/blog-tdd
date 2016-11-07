@@ -12,8 +12,8 @@ var app = express();
 
 // mongoose
 const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/db_blog')
+mongoose.Promise = global.Promise
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

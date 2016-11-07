@@ -1,11 +1,11 @@
-'user strict'
+'use strict'
 
-const mongoose = require('mongose')
+const mongoose = require('mongoose')
 const passportLocalMongoose = require('passport-local-mongoose')
 
 const Schema = mongoose.Schema
 
-let UsersSchema = new Schema ({
+let UsersSchema = new Schema({
   username  : String,
   password  : String
 }, {
@@ -14,4 +14,6 @@ let UsersSchema = new Schema ({
 
 UsersSchema.plugin(passportLocalMongoose)
 
-module.exports = mongoose.model('Users'. UsersSchema)
+let user = mongoose.model('Users', UsersSchema)
+
+module.exports = user

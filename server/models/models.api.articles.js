@@ -5,13 +5,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let ArticlesSchema = new Schema({
-  content : String,
-  userId  : [{
-    type: Schema.Types.ObjectId,
-    ref: 'Users'
-  }]
+  content : String
 }, {
   timestamps : true
 })
 
-module.exports = mongoose.model('Articles', ArticlesSchema)
+let article = mongoose.model('Articles', ArticlesSchema)
+
+module.exports = article
