@@ -14,6 +14,7 @@ Implement testing  Restful API with Mocha.js and Chai.js in TDD - Test Driven De
 6. passport : ```npm i -S passport```
 7. passport-local : ```npm i -S passport-local```
 8. passport-local-mongoose : ```npm i -S passport-local-mongoose```
+9. chai-http : ```npm i -S chai-http```
 
 ## Databases Configuration
 1. Database's name : db_blog
@@ -21,7 +22,7 @@ Implement testing  Restful API with Mocha.js and Chai.js in TDD - Test Driven De
     * Users
       * username (string)
       * password (string)
-    * Blogs
+    * Articles
       * content (string)
 
 ## End Point RESTful API Routes
@@ -33,10 +34,10 @@ Default development host & port : http://localhost:3000
 | api/users | POST | process & get respond JSON the new user's data |
 | api/users/:id | PUT | process & get respond JSON the edited user's data |
 | api/users/:id | DELETE | process & get respond JSON the deleted user's data |
-| api/blogs | GET | get respond JSON of all blogs's data  |
-| api/blogs | POST | process & get respond JSON the new blog's data |
-| api/blogs/:id | PUT | process & get respond JSON the edited blog's data |
-| api/blogs/:id | DELETE | process & get respond JSON the deleted blog's data |
+| api/articles | GET | get respond JSON of all articles's data  |
+| api/articles | POST | process & get respond JSON the new blog's data |
+| api/articles/:id | PUT | process & get respond JSON the edited blog's data |
+| api/articles/:id | DELETE | process & get respond JSON the deleted blog's data |
 
 ## File Structure
 ```
