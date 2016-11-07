@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const passportLocalMongoose = require('passport-local-mongoose')
 const Schema = mongoose.Schema
 
 const User = new Schema({
@@ -12,8 +13,7 @@ const User = new Schema({
         unique: true
     },
     password: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
         type: String,
@@ -24,12 +24,13 @@ const User = new Schema({
             message: `format email salah`
         },
     },
-    post: [
+    blog: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Post'
+            ref: 'Blog'
         }
     ]
 })
 
+User.plugin(passportLocalMongoose)
 module.exports = mongoose.model('User', User)

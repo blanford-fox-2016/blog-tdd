@@ -34,7 +34,7 @@ app.use(cors())
 app.use(cookieParser());
 
 app.use(session({
-  secret: SESSION_SECRET,
+  secret: process.env.SESSION_SECRET,
   cookie: {
     maxAge: 6000000
   }
@@ -46,7 +46,7 @@ passport.use(new LocalStrategy(User.authenticate()))
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
+app.use('/api', routes);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
