@@ -9,14 +9,14 @@ const url = 'http://localhost:3000'
   * should return (200) status code
   ** must be in format JSON
 */
-describe('Get all users from database', function() {
+describe.skip('Get all users from database', function() {
   it('it should return all users from database', function(done) {
     chai.request(url)
       .get('/api/users')
       .end(function(err, res){
         console.log(res.body);
-        res.body.should.be.json
-        res.body.should.have.status(200)
+        res.should.be.json
+        res.should.have.status(200)
         done()
       })
   })
@@ -33,16 +33,15 @@ describe.skip('Add a new user into database', function(){
     chai.request(url)
       .post('/api/users')
       .send({
-        "username" : "tama", // username is unique
-        "password" : "tama"
+        "username" : "admin", // username is unique
+        "password" : "admin"
         // add article put here
       })
       .end(function(err, res){
         console.log(res.body);
-        res.body.should.be.json
-        res.body.should.have.status(200)
+        res.should.be.json
+        res.should.have.status(200)
         res.body.username.should.equal("admin")
-        res.body.password.should.equal("admin")
         done()
       })
   })
@@ -55,19 +54,18 @@ describe.skip('Add a new user into database', function(){
   ** respond content body should be same with the content value that sent (PUT)
 */
 describe.skip('Updated a specific user based on id', function(){
-  let id = '582043369194e1133ee21560'
+  let id = '58204ac9f44348157bb80501'
   it('it should update a specific user', function(done){
     chai.request(url)
       .put('/api/users/' + id)
       .send({
-        "username" : "admin123",
-        "password" : "admin123"
+        "username" : "admin123"
       })
       .end(function(err, res){
-        res.body.should.be.json
-        res.body.should.have.status(200)
+        res.should.be.json
+        res.should.have.status(200)
         res.body.username.should.equal("admin123")
-        res.body.password.should.equal("admin123")
+        // res.body.password.should.equal("admin123")
         done()
       })
   })
@@ -80,13 +78,13 @@ describe.skip('Updated a specific user based on id', function(){
   ** respond content body should be same with the content value that deleted (DELETE)
 */
 describe.skip('Deleted a specific user based on id', function(done){
-  let id = '582043c58278ee1370295e50'
+  let id = '58204ac9f44348157bb80501'
   it('it should delete a specific user', function(){
     chai.request(url)
       .delete('/api/users/' + id)
       .end(function(err, res){
-        res.body.should.be.json
-        res.body.should.have.status(200)
+        res.should.be.json
+        res.should.have.status(200)
         res.body._id.should.equal(id)
         done()
       })
