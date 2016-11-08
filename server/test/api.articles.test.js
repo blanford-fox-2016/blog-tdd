@@ -18,6 +18,11 @@ describe('Get all articles from database', function(){
       .get('/api/articles')
       .end(function(err, res){
         console.log(res.body);
+        res.body[0].should.have.property('_id')
+        res.body[0].should.have.property('articleId')
+        res.body[0].should.have.property('content')
+        res.body[0].should.have.property('createdAt')
+        res.body[0].should.have.property('updatedAt')
         res.should.be.json
         res.should.have.status(200)
         done()
@@ -31,7 +36,7 @@ describe('Get all articles from database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (POST)
 */
-describe('Add a new article into database', function(){
+describe.skip('Add a new article into database', function(){
   it('it should add new article', function(done){
     chai.request(url)
       .post('/api/articles')
@@ -54,7 +59,7 @@ describe('Add a new article into database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (PUT)
 */
-describe('Updated a specific article based on id', function(){
+describe.skip('Updated a specific article based on articleId', function(){
   it('it should update a specific article', function(done){
     chai.request(url)
       .put('/api/articles/' + 1)
@@ -76,7 +81,7 @@ describe('Updated a specific article based on id', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that deleted (DELETE)
 */
-describe('Deleted a specific article based on id', function(){
+describe.skip('Deleted a specific article based on articleId', function(){
   it('it should delete a specific article', function(done){
     chai.request(url)
       .delete('/api/articles/' + 1)
