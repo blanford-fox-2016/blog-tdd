@@ -21,12 +21,26 @@ module.exports = {
     });
 
   },
-  //
+  // update data customer from databse
   updateCustomer : function(req, res, next){
 
-  },
-  //
-  deleteCustomer : function(req, res, next){
+    customer.findOneAndUpdate({ id: req.body.id }, { username: req.body.username }, { new : true }, function(err, data) {
+      if (err) throw err;
 
+      res.json(data)
+
+    });
+
+  },
+  // delete data customer form databse
+  deleteCustomer : function(req, res, next){
+    customer.findOneAndRemove({ id : req.body.id }, function(err, data) {
+      if (err) throw err;
+
+      console.log(data);
+      res.json(data);
+
+    });
   }
-}
+
+}// / module.exports
