@@ -4,18 +4,39 @@ chai.use(chaiHTTP)
 const should = chai.should()
 
 const url = 'http://localhost:3000'
+
 /*
   * will test GET /api/users
   * should return (200) status code
   ** must be in format JSON
 */
 describe('Get all users from database', function() {
+  /*
+    * dummy data
+  */
+  beforeEach(function(done){
+      chai.request(url)
+        .post('/api/users')
+        .send({
+          "userId"   : 1,
+          "username" : "dummy",
+          "password" : "dummy"
+        })
+        .end(function(err, res){
+          console.log(res.body);
+          done()
+        })
+  })
+
   it('it should return all users from database', function(done) {
     chai.request(url)
       .get('/api/users')
       .end(function(err, res){
-        console.log(res.body);
         res.body[0].should.have.property('_id')
+        res.body[0].should.have.property('userId')
+        res.body[0].should.have.property('username')
+        res.body[0].should.have.property('createdAt')
+        res.body[0].should.have.property('updatedAt')
         res.should.be.json
         res.should.have.status(200)
         done()
@@ -34,7 +55,7 @@ describe('Add a new user into database', function(){
     chai.request(url)
       .post('/api/users')
       .send({
-        "userId"   : 1,
+        "userId"   : 123,
         "username" : "admin", // username is unique
         "password" : "admin"
         // add article put here

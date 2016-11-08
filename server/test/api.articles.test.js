@@ -13,6 +13,9 @@ const url = 'http://localhost:3000'
   ** must be in format JSON
 */
 describe('Get all articles from database', function(){
+  /*
+    * dummy data
+  */
   beforeEach(function(done){
       chai.request(url)
         .post('/api/articles')
