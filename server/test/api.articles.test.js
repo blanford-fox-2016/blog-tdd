@@ -13,6 +13,19 @@ const url = 'http://localhost:3000'
   ** must be in format JSON
 */
 describe('Get all articles from database', function(){
+  beforeEach(function(done){
+      chai.request(url)
+        .post('/api/articles')
+        .send({
+          "articleId" : 1,
+          "content" : "dummy data"
+        })
+        .end(function(err, res){
+          console.log(res);
+          done()
+        })
+  })
+
   it('it should return all articles from database', function(done){
     chai.request(url)
       .get('/api/articles')
@@ -36,12 +49,12 @@ describe('Get all articles from database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (POST)
 */
-describe.skip('Add a new article into database', function(){
+describe('Add a new article into database', function(){
   it('it should add new article', function(done){
     chai.request(url)
       .post('/api/articles')
       .send({
-        "articleId" : 1,
+        "articleId" : 123,
         "content" : "new content from testing"
       })
       .end(function(err, res){
@@ -59,7 +72,7 @@ describe.skip('Add a new article into database', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that sent (PUT)
 */
-describe.skip('Updated a specific article based on articleId', function(){
+describe('Updated a specific article based on articleId', function(){
   it('it should update a specific article', function(done){
     chai.request(url)
       .put('/api/articles/' + 1)
@@ -81,7 +94,7 @@ describe.skip('Updated a specific article based on articleId', function(){
   ** must be in format JSON
   ** respond content body should be same with the content value that deleted (DELETE)
 */
-describe.skip('Deleted a specific article based on articleId', function(){
+describe('Deleted a specific article based on articleId', function(){
   it('it should delete a specific article', function(done){
     chai.request(url)
       .delete('/api/articles/' + 1)

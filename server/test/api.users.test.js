@@ -15,6 +15,7 @@ describe('Get all users from database', function() {
       .get('/api/users')
       .end(function(err, res){
         console.log(res.body);
+        res.body[0].should.have.property('_id')
         res.should.be.json
         res.should.have.status(200)
         done()
