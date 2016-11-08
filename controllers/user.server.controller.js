@@ -35,14 +35,12 @@ module.exports = {
     }
 
     var userData = {
-      name : req.body.name,
-      password : req.body.password
+      name : req.body.name
     }
     var option = {
       new : true,
       upsert : true
     }
-    console.log(params, userData, option);
     // find one and update the data
     User.findOneAndUpdate(params , userData , option)
       .then(user => res.json(user))
@@ -52,6 +50,12 @@ module.exports = {
   delete: (req, res) => {
     User.findOneAndRemove({username : req.params.username})
       .then(() => res.json({message : `${req.params.username} has been deleted`}))
+      .catch(err => res.json(err))
+  },
+
+  deleteAll: () => {
+    User.remove({})
+      .then(() => res.json({ message : 'all users have been deleted'}))
       .catch(err => res.json(err))
   }
 
