@@ -18,3 +18,5 @@ router.put('/users/:username', User.update)
 
 // DELETE the story by its title
 router.delete('/users/:username', User.delete)
+
+module.exports = router;

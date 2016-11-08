@@ -14,7 +14,9 @@ router.post('/stories', Story.create)
 router.get('/stories/:title', Story.find)
 
 // Update / PUT the story by its title
-router.put('/stories/:title', story.update)
+router.put('/stories/:title', Story.update)
 
 // DELETE the story by its title
-router.delete('/stories/:title', story.delete)
+router.delete('/stories/:title', Story.delete)
+
+module.exports = router
