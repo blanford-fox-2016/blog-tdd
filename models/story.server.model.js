@@ -8,7 +8,7 @@ const storySchema = new Schema ({
   main  : String,
   _creator : {
     type : String,
-    ref : User
+    ref : 'User'
   }
 })
 
