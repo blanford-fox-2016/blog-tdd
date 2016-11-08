@@ -10,13 +10,12 @@ chai.use(chaiHttp)
 
 // local dipendencies
 const url = 'http://localhost:3000'
-const User = require('../controllers/user.server.controller')
+const User = require('../models/user.server.model')
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 
 describe('Blogs', () => {
-
     describe('/GET users', () => {
         //this.timeout(5000)
         it('it should GET empty users', (done) => {
@@ -63,7 +62,7 @@ describe('Blogs', () => {
                   name : 'Panglima'
                 })
                 .end((err, res) => {
-                  console.log(res.body);
+                  //console.log(res.body);
                   res.should.have.status(200)
                   res.body.should.be.a('object')
                   res.body.should.have.property('username')
@@ -73,4 +72,18 @@ describe('Blogs', () => {
                 })
               })
         })
+
+        // delte new user
+        describe('/put users', () => {
+            it('it should GET empty users', (done) => {
+                chai.request(url)
+                    .delete('/api/users/Juang')
+                    .end((err, res) => {
+                      console.log(res.body);
+                      res.should.have.status(200)
+                      //res.body.length.should.be.eql(0)
+                      done()
+                    })
+                  })
+            })
   })
