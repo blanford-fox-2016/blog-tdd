@@ -22,6 +22,12 @@ module.exports = {
       .catch(err => res.json(err))
   },
 
+  find: (req, res) => {
+    User.findOne({ username : req.params.username })
+      .then(users => res.json(users))
+      .catch(err => res.json(err))
+  },
+
   update: (req, res) => {
     // collecting related fields to some variables
     var params = {

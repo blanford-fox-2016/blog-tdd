@@ -7,9 +7,5 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/user', userCtrl.create)
-router.get('/user', userCtrl.list)
-router.put('/user/:username', userCtrl.update)
-
 
 module.exports = router;

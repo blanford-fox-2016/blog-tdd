@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const storySchema = new Schema ({
-  title : String,
+  title : {
+    type :String,
+    required : true,
+    unique : true
+  },
   main  : String,
   _creator : {
     type : String,
