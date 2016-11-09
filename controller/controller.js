@@ -9,7 +9,9 @@ module.exports = {
             if (err) {
                 res.json(err)
             } else {
-                res.json(data)
+                res.json({
+                    message: 'List article'
+                })
             }
         })
     },
@@ -21,32 +23,40 @@ module.exports = {
             if (err) {
                 res.json(err)
             } else {
-                res.json(data)
+                res.json({
+                    title: data.title,
+                    content: data.content
+                })
             }
         })
     },
     updateArticle: function(req, res, next) {
-        article.update({
-            _id: req.params.id
+        article.findOneAndUpdate({
+            articleId: req.params.id
         }, {
             title: req.body.title,
             content: req.body.content
+        }, {
+            new: true
         }, function(err, data) {
             if (err) {
                 res.json(err)
             } else {
-                res.json(data)
+                res.json({
+                    title: data.title,
+                    content: data.content
+                })
             }
         })
     },
     deleteArticle: function(req, res, next) {
         article.remove({
-            _id: req.params.id
+            articleId: req.params.id
         }, function(err, data) {
             if (err) {
                 res.json(err)
             } else {
-                res.json(data)
+                res.json({ message: `Article Deleted Successfully` })
             }
         })
     },
@@ -62,7 +72,11 @@ module.exports = {
                     if (err) {
                         return next(err)
                     } else {
-                        res.json(result)
+                        res.json({
+                            name: result.name,
+                            username: result.username,
+                            message: `register success`
+                        })
                     }
                 })
             }
@@ -71,7 +85,7 @@ module.exports = {
     loginProcess: function(req, res, next) {
 
         passport.authenticate('local', (err, user, info) => {
-            res.send({ id: user._id, username: user.username, name: user.name })
+            res.json({ id: user.userId, username: user.username, name: user.name })
         })(req, res, next)
 
     }

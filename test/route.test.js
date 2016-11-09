@@ -1,28 +1,17 @@
 'use strict'
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const faker = require('faker');
 const expect = chai.expect
 const urlApi = 'http://localhost:3000/api'
 chai.use(chaiHttp);
 
 // CRUD ROUTE TEST
-describe.skip('Route get article', function() {
-    it('expect to return list of articles', function(done) {
-            chai.request(urlApi)
-                .get('/article')
-                .end(function(err, res) {
-                    expect(res).to.have.status(200)
-                    expect(res).to.be.json
-                    expect(res.body[0].content).to.be.equal("nodejs mastery")
-                    done()
-                }) // chai
-        }) // it
-})
 
-describe.skip('Route post article', function() {
-    let newTitle = 'express mastery'
-    let newContent = 'express mastery adalah .....'
-    it('expect to return json of new user and status 200', function(done) {
+describe('Route post article', function() {
+    let newTitle = faker.lorem.sentence()
+    let newContent = faker.lorem.sentences()
+    it('expect to return new posted article title and content', function(done) {
         chai.request(urlApi)
             .post('/article')
             .send({
@@ -30,19 +19,31 @@ describe.skip('Route post article', function() {
                 content: newContent
             })
             .end(function(req, res) {
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
                 expect(res.body.title).to.be.equal(newTitle)
+                expect(res.body.content).to.be.equal(newContent)
                 done()
             })
     })
 })
 
-describe.skip('Route put article', function() {
-        let putId = `58204381145c6e5893590e77`
-        let newTitle = `NodeJs Mastery`
-        let newContent = `NodeJs adalah .....`
-        it('expect to return json of ok:1 and status 200', function(done) {
+
+describe('Route get article', function() {
+    it('expect to return list of articles', function(done) {
+            chai.request(urlApi)
+                .get('/article')
+                .end(function(err, res) {
+                    expect(res.body.message).to.be.equal("List article")
+                    done()
+                }) // chai
+        }) // it
+})
+
+
+describe('Route put article', function() {
+        let putId = 7
+        let newTitle = faker.lorem.sentence()
+        let newContent = faker.lorem.sentences()
+        it('expect to return new article title and content', function(done) {
             chai.request(urlApi)
                 .put(`/article/${putId}`)
                 .send({
@@ -50,33 +51,30 @@ describe.skip('Route put article', function() {
                     content: newContent
                 })
                 .end(function(err, res) {
-                    expect(res).to.have.status(200);
-                    expect(res).to.be.json;
-                    expect(res.body.ok).to.be.equal(1)
+                    expect(res.body.title).to.be.equal(newTitle)
+                    expect(res.body.content).to.be.equal(newContent)
                     done()
                 })
         })
     })
     //
-describe.skip('Route delete article', function() {
-    let delId = `5820492f467df265eb89c878`
-    it('expect to return json of n:1 and status 200', function(done) {
+describe('Route delete article', function() {
+    let delId = 7
+    it('expect to return delete message', function(done) {
         chai.request(urlApi)
             .delete(`/article/${delId}`)
             .end(function(err, res) {
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
-                expect(res.body.n).to.be.equal(1)
+                expect(res.body.message).to.be.equal(`Article Deleted Successfully`)
                 done()
             })
     })
 })
 
 // REGISTER NEW USER
-describe.skip('Route post Register new User', function() {
-    let newName
-    let newUsername
-    let newPassword
+describe('Route post Register new User', function() {
+    let newName = 'aaaa'
+    let newUsername = 'aaaa'
+    let newPassword = 'aaaa'
     it('expect to return new user name and status 200', function(done) {
         chai.request(urlApi)
             .post('/register')
@@ -86,15 +84,16 @@ describe.skip('Route post Register new User', function() {
                 password: newPassword
             })
             .end(function(err, res) {
-                expect(res).to.have.status(200);
-                expect(res).to.be.json;
-                expect(res.body[0].name).to.be.equal(newName)
+                expect(res.body.name).to.be.equal(newName)
+                expect(res.body.username).to.be.equal(newUsername)
+                expect(res.body.message).to.be.equal(`register success`)
                 done()
             })
     })
 })
 
 describe('Route Login Process', function() {
+    let newName = 'aaaa'
     let newUsername = `aaaa`
     let newPassword = `aaaa`
     it('expect username from login = username from database', function(done) {
@@ -106,6 +105,7 @@ describe('Route Login Process', function() {
             })
             .end(function(req, res) {
                 expect(res.body.username).to.be.equal(newUsername)
+                expect(res.body.name).to.be.equal(newName)
                 done()
             })
     })
